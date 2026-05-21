@@ -1,0 +1,18 @@
+# Never commit actual credentials
+.env
+.env.local
+.env.*.local
+SECRETS.md
+SSH_KEYS.md
+
+# Never commit session handoff files
+NEXT_SESSION.md
+NEXT_SESSION*.md
+NEXT_SESSION*.txt
+PROMPT_NEXT_SESSION.md
+PROMPT_FOR_NEXT_SESSION.md
+START_NEXT_SESSION.txt
+.claude_next_session
+
+# But do commit the template
+!.env.example
