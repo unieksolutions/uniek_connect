@@ -1,0 +1,38 @@
+# FastAPI and web server
+fastapi==0.136.1
+uvicorn[standard]==0.47.0
+starlette==1.0.0
+
+# Pydantic for config and validation
+pydantic==2.13.4
+pydantic-settings==2.14.1
+
+# Database
+sqlalchemy==2.0.49
+alembic==1.15.0
+psycopg2-binary==2.9.10
+
+# OAuth providers
+google-auth==2.53.0
+google-auth-oauthlib==1.4.0
+google-api-python-client==2.196.0
+msal==1.31.1
+
+# Cryptography for token encryption
+cryptography>=38.0.3,<46
+
+# Background scheduler
+apscheduler==3.11.2
+
+# HTTP client
+httpx==0.28.1
+
+# Environment management
+python-dotenv==1.2.2
+
+# Redis for rate limiting (optional)
+redis==5.2.1
+
+# Testing
+pytest==8.3.4
+pytest-asyncio==0.24.0
