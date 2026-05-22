@@ -9,20 +9,28 @@ ts: 2025-05-21T00:00:00Z | git: <to-be-filled> | path: /opt/projects/uniek_conne
 ## Current State
 
 ### ✅ Completed
-- Project structure bootstrapped from /opt/bootstrap templates
+- **UC-000:** Project structure bootstrapped from /opt/bootstrap templates
+- **UC-001:** Architecture & Design complete
+  - 5 ADRs documented (central service, web OAuth, encryption, PostgreSQL, RESTful API)
+  - System architecture diagram
+  - OAuth 2.0 flow design (authorization + token refresh)
+  - Database schema: 5 tables (organizations, users, oauth_tokens, api_keys, audit_logs)
+  - API endpoint specifications (OAuth, tokens, calendars, tasks, admin)
+  - Security model: 7 controls
+  - Multi-tenant strategy with MVP path
 - README.md filled with project overview
-- Documentation templates in place
+- BACKLOG.md populated with 14 work items
 - Port allocation: 61300 (dev), 61301 (accept), 61302 (prod)
 
 ### 🚧 In Progress
-- BACKLOG.md being populated with initial tasks
+- **UC-002:** FastAPI skeleton implementation (next)
 
 ### ⏳ Planned
-- Architecture design (OAuth flow, token storage, API design)
-- FastAPI skeleton implementation
-- Google OAuth connector (Phase 1)
-- Microsoft OAuth connector (Phase 1)
-- Calendar and task list data fetchers
+- Google OAuth connector (UC-003)
+- Google Calendar + Tasks connectors (UC-004, UC-005)
+- Microsoft OAuth + connectors (UC-006, UC-007, UC-008)
+- Token retrieval API (UC-009)
+- Token management UI (UC-010)
 
 ## Architecture Decisions
 

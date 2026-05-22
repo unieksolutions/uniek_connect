@@ -21,12 +21,12 @@ Sync this file with tickets API regularly to keep work visible in both places.
 
 ### High Priority - Phase 1: Core Infrastructure
 
-#### UC-001: Architecture & Design
-- [ ] Design OAuth flow architecture (web-based authorization, token storage)
-- [ ] Design database schema (oauth_tokens, token_scopes, connected_accounts)
-- [ ] Design API endpoints (auth flows, token retrieval, data fetching)
-- [ ] Document security model (encryption at rest, token rotation)
-- [ ] Define multi-tenant strategy (user isolation, organization support)
+#### UC-001: Architecture & Design ✅
+- [x] Design OAuth flow architecture (web-based authorization, token storage)
+- [x] Design database schema (oauth_tokens, token_scopes, connected_accounts)
+- [x] Design API endpoints (auth flows, token retrieval, data fetching)
+- [x] Document security model (encryption at rest, token rotation)
+- [x] Define multi-tenant strategy (user isolation, organization support)
 
 #### UC-002: FastAPI Skeleton
 - [ ] Create Python venv with FastAPI dependencies
@@ -129,4 +129,5 @@ Sync this file with tickets API regularly to keep work visible in both places.
 - [ ] Consider privacy and security implications
 
 ## Completed
-- [x] UC-000: Bootstrap project structure from /opt/bootstrap templates
+- [x] UC-000: Bootstrap project structure from /opt/bootstrap templates (2025-05-21)
+- [x] UC-001: Architecture & Design - OAuth flows, database schema, API specs, security model (2025-05-21)
