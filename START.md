@@ -10,10 +10,8 @@ This file is the single entrypoint for starting a new project.
 
 **Default rule for all agents:** start discovery at the SPI Manager index, not by guessing endpoints.
 
-Primary bootstrap endpoints:
-- LAN: `http://192.168.42.21:63115/info`
-- Tailscale: `http://100.123.174.47:63115/info`
-- Local on SPI host: `http://localhost:63115/info`
+**Agents op SPI gebruiken altijd `http://localhost:65000`.**
+> Tailscale `http://100.123.174.47:65000` is alleen om aan de gebruiker (Niek) door te geven.
 
 Use `/info` first to discover what SPI currently exposes. Then follow the linked capability surfaces such as models, jobs, services, message, image, audio, video, and file handling.
 
@@ -122,9 +120,9 @@ Tickets are individual work items (structured, queryable, stateful).
 - If resources unavailable → expect `queued` / `blocked_by` / ETA responses — **do not bypass**
 - Direct unmanaged GPU processes started outside SPI are **operational debt** and may be stopped by policy
 
-**LLM inference:** `POST http://192.168.42.21:63115/v2/chat/completions` with `agent_id` required
-**Prewarm model:** `POST http://192.168.42.21:63115/admin/local-models/start {"model": "<name>"}`
-**Discovery:** `GET http://192.168.42.21:63115/info` — authoritative entrypoint for all capabilities
+**LLM inference:** `POST http://localhost:65000/v2/chat/completions` with `agent_id` required
+**Prewarm model:** `POST http://localhost:65000/admin/local-models/start {"model": "<name>"}`
+**Discovery:** `GET http://localhost:65000/info` — authoritative entrypoint for all capabilities
 
 ### How to test/build — sanctioned paths (do NOT start services directly)
 
@@ -152,24 +150,12 @@ zodra een managed job de VRAM nodig heeft — directe launches mislukken dus sow
 - Commit to Github when this context window is reached (see SECRETS.md for GitHub PAT location)
 - Only edit files in /opt/projects directly, never in /opt/tools or /opt/products unless specifically instructed to
 
-## 🛠️ Tool Discovery (Zero Context Window Cost!)
-
-**Discover available services programmatically:**
+## 🛠️ Service Discovery
 
 ```bash
-# Get all available services (10-20 tokens vs 2,000+ from docs)
-curl http://localhost:63100/api/v1/services?env=prod
-
-# Returns: service name, type (api/mcp/both), URLs, health status
-# Only read detailed docs (/opt/projects/{service}/API.md) when you need them
+curl http://localhost:65000/info
 ```
-
-**Service Discovery API:**
-- Development: `http://localhost:61100/api/v1/services`
-- Production: `http://localhost:63100/api/v1/services`
-- Query params: `?env=dev|accept|prod` and `?health=true|false`
-- Auto-scans `/opt/projects/*/APIMCP.md` for service metadata
-- **100x context window savings** (lightweight JSON vs reading full docs)
+Geeft alle capabilities: modellen, jobs, tools, resources.
 
 ### Core Documentation (Read As Needed)
 - **`/opt/bootstrap/ECOSYSTEM.md`** - Ecosysteem architectuur: alle diensten, agents en verbindingen. **Lees dit als je werkt aan channels, GMR, IAM of agents** — bevat de combinatiematrix (channels/GMR/agent optioneel), verbindingsstatus en ontwerpprincipes. Interactief diagram op SPI: `https://192.168.42.21:63443/ui/static/ecosystem-messaging.html`
@@ -202,87 +188,13 @@ curl http://localhost:63100/api/v1/services?env=prod
 - **Single intent per file:** Max ~15K tokens
 - **Read as needed:** Don't read all docs upfront, lazy load when task requires
 
-## 🤖 AI Model & GPU Access (For All Agents)
+## 🤖 AI Model & GPU Access
 
-**All SPI services have access to centralized AI models and GPU resources via the SPI Manager (WLM).**
+**SPI Manager endpoint: `http://localhost:65000`**
 
-### Quick Reference:
-- **API Documentation:** `/opt/projects/spi-manager/API.md` - Complete guide for agents
-- **Available models:** 422+ models (OpenAI, Anthropic, Google, Venice, Mistral, Groq, local)
-- **Development API:** http://localhost:61115
-- **Production API:** http://localhost:63115
-- **Interactive docs:** http://localhost:61115/docs (Swagger UI)
-
-### Common Operations for Agents:
-
-**Discover available models:**
 ```bash
-GET http://localhost:61115/models
-# Returns 422+ models with availability, cost, and capabilities
+POST http://localhost:65000/v2/chat/completions
+{"model": "auto", "messages": [...], "agent_id": "uniek_connect"}
+GET http://localhost:65000/info   # discovery
 ```
-
-**Get LLM completion:**
-```bash
-POST http://localhost:61115/invoke
-{
-  "prompt": "Your prompt here",
-  "agent_id": "your-service-name",  # REQUIRED for tracking
-  "model": "auto"  # or specify: "claude-3-7-sonnet-20250219"
-}
-```
-
-**Check GPU/VRAM availability:**
-```bash
-GET http://localhost:61115/gpu/status
-# Returns: total_vram_gb, used_vram_gb, free_vram_gb, loaded_models
-```
-
-**Request VRAM for GPU workload:**
-```bash
-POST http://localhost:61115/gpu/allocate
-{
-  "requester": "your-service-name",
-  "required_vram_gb": 10.0,
-  "priority": 7  # 1-10: Video(9) > Image(7) > LLM(5)
-}
-# WLM will evict idle models if needed
-# Returns: allocation_id for cleanup later
-```
-
-**Release VRAM allocation:**
-```bash
-POST http://localhost:61115/gpu/release
-{
-  "allocation_id": "alloc_abc123",
-  "restore_models": false
-}
-```
-
-### Agent Requirements:
-⚠️ **ALWAYS include `agent_id` in all requests** - Required for:
-- Usage tracking and analytics
-- Budget management per service
-- Cost attribution
-- Performance monitoring
-
-### Register Your Service with SPI Manager:
-```bash
-POST http://localhost:63115/registry/register
-{
-  "service_id": "your-service-name",
-  "service_name": "Human Readable Name",
-  "description": "What this service does",
-  "endpoint": {
-    "environment": "prod",
-    "base_url": "http://localhost:YOUR_PORT",
-    "port": YOUR_PORT,
-    "health_check_url": "/health"
-  }
-}
-```
-**See:** `/opt/bootstrap/TOOLS.md` → "Registering Your Service" for full details.
-
-### Full Documentation:
-📚 **Complete API guide:** `/opt/projects/spi-manager/API.md`
-🛠️ **All available tools:** `/opt/bootstrap/TOOLS.md`
-📋 **Coding standards:** `/opt/bootstrap/CODING_RULES.md`
+⚠️ `agent_id` verplicht. Volledige docs: `/opt/projects/spi-manager/API.md`
