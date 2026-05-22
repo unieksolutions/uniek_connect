@@ -28,13 +28,13 @@ Sync this file with tickets API regularly to keep work visible in both places.
 - [x] Document security model (encryption at rest, token rotation)
 - [x] Define multi-tenant strategy (user isolation, organization support)
 
-#### UC-002: FastAPI Skeleton
-- [ ] Create Python venv with FastAPI dependencies
-- [ ] Implement config.py (Pydantic settings from .env)
-- [ ] Implement database.py (SQLAlchemy models)
-- [ ] Implement main.py (FastAPI app with lifespan, CORS)
-- [ ] Create health endpoint
-- [ ] Test skeleton on port 61300
+#### UC-002: FastAPI Skeleton ✅
+- [x] Create Python venv with FastAPI dependencies
+- [x] Implement config.py (Pydantic settings from .env)
+- [x] Implement database.py (SQLAlchemy models)
+- [x] Implement main.py (FastAPI app with lifespan, CORS)
+- [x] Create health endpoint
+- [x] Test skeleton on port 61300
 
 #### UC-003: Google OAuth Connector
 - [ ] Register OAuth app in Google Cloud Console
@@ -131,3 +131,4 @@ Sync this file with tickets API regularly to keep work visible in both places.
 ## Completed
 - [x] UC-000: Bootstrap project structure from /opt/bootstrap templates (2025-05-21)
 - [x] UC-001: Architecture & Design - OAuth flows, database schema, API specs, security model (2025-05-21)
+- [x] UC-002: FastAPI skeleton - config, database models, app setup, health endpoint (2025-05-22)

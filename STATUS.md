@@ -18,12 +18,20 @@ ts: 2025-05-21T00:00:00Z | git: <to-be-filled> | path: /opt/projects/uniek_conne
   - API endpoint specifications (OAuth, tokens, calendars, tasks, admin)
   - Security model: 7 controls
   - Multi-tenant strategy with MVP path
+- **UC-002:** FastAPI skeleton implementation complete
+  - Python venv with 43 dependencies (FastAPI, SQLAlchemy, OAuth libs)
+  - config.py: Pydantic settings (database, OAuth, CORS, logging)
+  - database.py: 5 SQLAlchemy models with indexes
+  - main.py: FastAPI app with lifespan, CORS middleware
+  - Health + root endpoints working on port 61300
+  - Fernet encryption key generated for token security
+  - Default organization + user seeded in database
 - README.md filled with project overview
 - BACKLOG.md populated with 14 work items
 - Port allocation: 61300 (dev), 61301 (accept), 61302 (prod)
 
 ### 🚧 In Progress
-- **UC-002:** FastAPI skeleton implementation (next)
+- **UC-003:** Google OAuth connector (next)
 
 ### ⏳ Planned
 - Google OAuth connector (UC-003)
