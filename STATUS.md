@@ -51,15 +51,25 @@ ts: 2025-05-21T00:00:00Z | git: <to-be-filled> | path: /opt/projects/uniek_conne
   - Status filtering (needsAction, completed)
   - Show completed/hidden filters
   - Subtask hierarchy support
+- **UC-006:** Microsoft OAuth connector complete
+  - OAuth login endpoint: `GET /auth/microsoft/login`
+  - OAuth callback endpoint: `GET /auth/microsoft/callback`
+  - OAuth revoke endpoint: `DELETE /auth/microsoft/revoke`
+  - Token encryption/decryption (Fernet AES-128)
+  - Token retrieval API: `GET /api/tokens/microsoft/{email}`
+  - Token status check: `GET /api/tokens/microsoft/{email}/status`
+  - Automatic token refresh with MSAL
+  - CSRF protection via session state
+  - Microsoft Graph scopes (Calendars.Read, Tasks.Read, User.Read)
 - README.md filled with project overview
 - BACKLOG.md populated with 14 work items
 - Port allocation: 61300 (dev), 61301 (accept), 61302 (prod)
 
 ### 🚧 In Progress
-- **UC-006:** Microsoft OAuth connector (next)
+- **UC-007:** Microsoft Calendar connector (next)
 
 ### ⏳ Planned
-- Microsoft OAuth + connectors (UC-006, UC-007, UC-008)
+- Microsoft Calendar + To Do connectors (UC-007, UC-008)
 - Token retrieval API (UC-009)
 - Token management UI (UC-010)
 

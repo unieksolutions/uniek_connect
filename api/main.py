@@ -11,7 +11,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 from api.config import get_settings
 from api.database import init_db
-from api.oauth import google
+from api.oauth import google, microsoft
 from api.routes import tokens, calendars, tasks
 
 # Configure logging
@@ -83,7 +83,7 @@ async def root():
         "endpoints": {
             "health": "/health",
             "docs": "/docs",
-            "oauth": "/auth/{provider}/ (Google)",
+            "oauth": "/auth/{provider}/ (Google, Microsoft)",
             "tokens": "/api/tokens/",
             "calendars": "/calendars/{provider}/ (Google)",
             "tasks": "/tasks/{provider}/ (Google)",
@@ -106,6 +106,7 @@ async def health():
 
 # Register routes
 app.include_router(google.router, prefix="/auth/google", tags=["oauth-google"])
+app.include_router(microsoft.router, prefix="/auth/microsoft", tags=["oauth-microsoft"])
 app.include_router(tokens.router, prefix="/api/tokens", tags=["tokens"])
 app.include_router(calendars.router, prefix="/calendars", tags=["calendars"])
 app.include_router(tasks.router, prefix="/tasks", tags=["tasks"])

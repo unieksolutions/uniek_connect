@@ -61,13 +61,13 @@ Sync this file with tickets API regularly to keep work visible in both places.
 
 ### Medium Priority - Phase 1: Microsoft Support
 
-#### UC-006: Microsoft OAuth Connector
-- [ ] Register OAuth app in Azure/Entra
-- [ ] Configure OAuth scopes (Calendar, Tasks read/write)
-- [ ] Implement /auth/microsoft/login endpoint
-- [ ] Implement /auth/microsoft/callback endpoint
-- [ ] Implement token storage (same schema as Google)
-- [ ] Test with Microsoft 365 account
+#### UC-006: Microsoft OAuth Connector ✅
+- [x] Register OAuth app in Azure/Entra
+- [x] Configure OAuth scopes (Calendar, Tasks read/write)
+- [x] Implement /auth/microsoft/login endpoint
+- [x] Implement /auth/microsoft/callback endpoint
+- [x] Implement token storage (same schema as Google)
+- [x] Test with Microsoft 365 account
 
 #### UC-007: Microsoft Calendar Connector
 - [ ] Implement Microsoft Graph API client
@@ -135,3 +135,4 @@ Sync this file with tickets API regularly to keep work visible in both places.
 - [x] UC-003: Google OAuth connector - login/callback/revoke, token encryption, auto-refresh (2025-05-22)
 - [x] UC-004: Google Calendar connector - list calendars/events, date filtering, attendees (2025-05-22)
 - [x] UC-005: Google Tasks connector - list task lists/tasks, status filtering, subtasks (2025-05-22)
+- [x] UC-006: Microsoft OAuth connector - login/callback/revoke, MSAL integration, auto-refresh (2025-05-22)

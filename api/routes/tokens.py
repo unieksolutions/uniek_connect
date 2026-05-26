@@ -9,6 +9,7 @@ from datetime import datetime
 
 from api.database import get_db, OAuthToken
 from api.oauth.google import get_valid_token as get_google_token
+from api.oauth.microsoft import get_valid_token as get_microsoft_token
 
 router = APIRouter()
 
@@ -33,28 +34,30 @@ async def get_token(
     """
     if provider == "google":
         access_token = await get_google_token(account_email, user_id, db)
-
-        # Get token from database for metadata
-        token = db.query(OAuthToken).filter(
-            OAuthToken.user_id == user_id,
-            OAuthToken.provider == provider,
-            OAuthToken.account_email == account_email,
-            OAuthToken.is_valid == True
-        ).first()
-
-        expires_in = int((token.token_expiry - datetime.utcnow()).total_seconds())
-
-        return {
-            "access_token": access_token,
-            "token_type": "Bearer",
-            "expires_in": expires_in,
-            "scope": token.scopes
-        }
+    elif provider == "microsoft":
+        access_token = await get_microsoft_token(account_email, user_id, db)
     else:
         raise HTTPException(
             status_code=400,
-            detail=f"Provider '{provider}' not supported yet"
+            detail=f"Provider '{provider}' not supported. Supported providers: google, microsoft"
         )
+
+    # Get token from database for metadata
+    token = db.query(OAuthToken).filter(
+        OAuthToken.user_id == user_id,
+        OAuthToken.provider == provider,
+        OAuthToken.account_email == account_email,
+        OAuthToken.is_valid == True
+    ).first()
+
+    expires_in = int((token.token_expiry - datetime.utcnow()).total_seconds())
+
+    return {
+        "access_token": access_token,
+        "token_type": "Bearer",
+        "expires_in": expires_in,
+        "scope": token.scopes
+    }
 
 
 @router.get("/{provider}/{account_email}/status")
