@@ -52,12 +52,12 @@ Sync this file with tickets API regularly to keep work visible in both places.
 - [x] Implement date range filtering
 - [x] Test with real Google account
 
-#### UC-005: Google Tasks Connector
-- [ ] Implement Google Tasks API client
-- [ ] Create /tasks/google endpoint (list task lists)
-- [ ] Create /tasks/google/{id}/items endpoint (get tasks)
-- [ ] Implement status filtering (pending, completed)
-- [ ] Test with real Google account
+#### UC-005: Google Tasks Connector ✅
+- [x] Implement Google Tasks API client
+- [x] Create /tasks/google endpoint (list task lists)
+- [x] Create /tasks/google/{id}/items endpoint (get tasks)
+- [x] Implement status filtering (pending, completed)
+- [x] Test with real Google account
 
 ### Medium Priority - Phase 1: Microsoft Support
 
@@ -134,3 +134,4 @@ Sync this file with tickets API regularly to keep work visible in both places.
 - [x] UC-002: FastAPI skeleton - config, database models, app setup, health endpoint (2025-05-22)
 - [x] UC-003: Google OAuth connector - login/callback/revoke, token encryption, auto-refresh (2025-05-22)
 - [x] UC-004: Google Calendar connector - list calendars/events, date filtering, attendees (2025-05-22)
+- [x] UC-005: Google Tasks connector - list task lists/tasks, status filtering, subtasks (2025-05-22)

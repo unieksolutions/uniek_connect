@@ -43,12 +43,20 @@ ts: 2025-05-21T00:00:00Z | git: <to-be-filled> | path: /opt/projects/uniek_conne
   - Date range filtering (time_min, time_max parameters)
   - All-day event support
   - Attendee information included
+- **UC-005:** Google Tasks connector complete
+  - List task lists: `GET /tasks/google?account_email={email}`
+  - List tasks: `GET /tasks/google/{tasklist_id}/items?account_email={email}`
+  - Get single task: `GET /tasks/google/{tasklist_id}/items/{task_id}?account_email={email}`
+  - List subtasks: `GET /tasks/google/{tasklist_id}/items/{task_id}/subtasks?account_email={email}`
+  - Status filtering (needsAction, completed)
+  - Show completed/hidden filters
+  - Subtask hierarchy support
 - README.md filled with project overview
 - BACKLOG.md populated with 14 work items
 - Port allocation: 61300 (dev), 61301 (accept), 61302 (prod)
 
 ### 🚧 In Progress
-- **UC-005:** Google Tasks connector (next)
+- **UC-006:** Microsoft OAuth connector (next)
 
 ### ⏳ Planned
 - Microsoft OAuth + connectors (UC-006, UC-007, UC-008)
