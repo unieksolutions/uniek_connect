@@ -85,7 +85,7 @@ async def root():
             "docs": "/docs",
             "oauth": "/auth/{provider}/ (Google, Microsoft)",
             "tokens": "/api/tokens/",
-            "calendars": "/calendars/{provider}/ (Google)",
+            "calendars": "/calendars/{provider}/ (Google, Microsoft)",
             "tasks": "/tasks/{provider}/ (Google)",
         }
     }

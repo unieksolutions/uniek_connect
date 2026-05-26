@@ -61,15 +61,23 @@ ts: 2025-05-21T00:00:00Z | git: <to-be-filled> | path: /opt/projects/uniek_conne
   - Automatic token refresh with MSAL
   - CSRF protection via session state
   - Microsoft Graph scopes (Calendars.Read, Tasks.Read, User.Read)
+- **UC-007:** Microsoft Calendar connector complete
+  - List calendars: `GET /calendars/microsoft?account_email={email}`
+  - List events: `GET /calendars/microsoft/{id}/events?account_email={email}`
+  - Get single event: `GET /calendars/microsoft/{id}/events/{event_id}?account_email={email}`
+  - Date range filtering via Microsoft Graph OData queries
+  - All-day event support
+  - Attendee information with response status
+  - Event metadata (sensitivity, importance, categories)
 - README.md filled with project overview
 - BACKLOG.md populated with 14 work items
 - Port allocation: 61300 (dev), 61301 (accept), 61302 (prod)
 
 ### 🚧 In Progress
-- **UC-007:** Microsoft Calendar connector (next)
+- **UC-008:** Microsoft To Do connector (next)
 
 ### ⏳ Planned
-- Microsoft Calendar + To Do connectors (UC-007, UC-008)
+- Microsoft To Do connector (UC-008)
 - Token retrieval API (UC-009)
 - Token management UI (UC-010)
 

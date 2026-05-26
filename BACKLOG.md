@@ -69,12 +69,12 @@ Sync this file with tickets API regularly to keep work visible in both places.
 - [x] Implement token storage (same schema as Google)
 - [x] Test with Microsoft 365 account
 
-#### UC-007: Microsoft Calendar Connector
-- [ ] Implement Microsoft Graph API client
-- [ ] Create /calendars/microsoft endpoint (list calendars)
-- [ ] Create /calendars/microsoft/{id}/events endpoint (get events)
-- [ ] Implement date range filtering
-- [ ] Test with real Microsoft 365 account
+#### UC-007: Microsoft Calendar Connector ✅
+- [x] Implement Microsoft Graph API client
+- [x] Create /calendars/microsoft endpoint (list calendars)
+- [x] Create /calendars/microsoft/{id}/events endpoint (get events)
+- [x] Implement date range filtering
+- [x] Test with real Microsoft 365 account
 
 #### UC-008: Microsoft To Do Connector
 - [ ] Implement Microsoft Graph API client for Tasks
@@ -136,3 +136,4 @@ Sync this file with tickets API regularly to keep work visible in both places.
 - [x] UC-004: Google Calendar connector - list calendars/events, date filtering, attendees (2025-05-22)
 - [x] UC-005: Google Tasks connector - list task lists/tasks, status filtering, subtasks (2025-05-22)
 - [x] UC-006: Microsoft OAuth connector - login/callback/revoke, MSAL integration, auto-refresh (2025-05-22)
+- [x] UC-007: Microsoft Calendar connector - list calendars/events, Graph API, OData filtering (2025-05-22)
