@@ -77,8 +77,8 @@ ts: 2025-05-21T00:00:00Z | git: <to-be-filled> | path: /opt/projects/uniek_conne
 - **UC-008:** Microsoft To Do connector (next)
 
 ### ⏳ Planned
-- Microsoft To Do connector (UC-008)
-- Token retrieval API (UC-009)
+- Apple Calendar & Reminders connectors (UC-011)
+- Nextcloud Calendar & Tasks connectors (UC-012)
 - Token management UI (UC-010)
 
 ## Architecture Decisions
