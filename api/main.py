@@ -4,11 +4,15 @@ FastAPI application entry point.
 """
 
 import logging
+import secrets
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.sessions import SessionMiddleware
 from api.config import get_settings
 from api.database import init_db
+from api.oauth import google
+from api.routes import tokens
 
 # Configure logging
 logging.basicConfig(
@@ -49,6 +53,13 @@ app = FastAPI(
     description="Central OAuth connector service for external APIs (calendars, tasks, email, messaging)",
     version="0.1.0",
     lifespan=lifespan,
+)
+
+# Session middleware for OAuth state management
+app.add_middleware(
+    SessionMiddleware,
+    secret_key=settings.token_encryption_key or secrets.token_urlsafe(32),
+    max_age=3600,  # 1 hour session
 )
 
 # CORS middleware
@@ -93,10 +104,12 @@ async def health():
     }
 
 
-# TODO: Add route modules
-# from api.routes import oauth, tokens, calendars, tasks, admin
-# app.include_router(oauth.router, prefix="/auth", tags=["oauth"])
-# app.include_router(tokens.router, prefix="/api/tokens", tags=["tokens"])
+# Register routes
+app.include_router(google.router, prefix="/auth/google", tags=["oauth-google"])
+app.include_router(tokens.router, prefix="/api/tokens", tags=["tokens"])
+
+# TODO: Add more route modules
+# from api.routes import calendars, tasks, admin
 # app.include_router(calendars.router, prefix="/calendars", tags=["calendars"])
 # app.include_router(tasks.router, prefix="/tasks", tags=["tasks"])
 # app.include_router(admin.router, prefix="/api/admin", tags=["admin"])

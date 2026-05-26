@@ -30,6 +30,9 @@ httpx==0.28.1
 # Environment management
 python-dotenv==1.2.2
 
+# Session management
+itsdangerous==2.2.0
+
 # Redis for rate limiting (optional)
 redis==5.2.1
 
