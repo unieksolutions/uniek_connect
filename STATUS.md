@@ -3,8 +3,8 @@ ts: 2025-05-21T00:00:00Z | git: <to-be-filled> | path: /opt/projects/uniek_conne
 -->
 # STATUS
 
-**Last Updated:** 2025-05-21
-**Status:** Bootstrap Complete - Ready for Implementation
+**Last Updated:** 2025-05-22
+**Status:** Phase 1 - Google Connector Implementation
 
 ## Current State
 
@@ -26,16 +26,31 @@ ts: 2025-05-21T00:00:00Z | git: <to-be-filled> | path: /opt/projects/uniek_conne
   - Health + root endpoints working on port 61300
   - Fernet encryption key generated for token security
   - Default organization + user seeded in database
+- **UC-003:** Google OAuth connector complete
+  - OAuth login endpoint: `GET /auth/google/login`
+  - OAuth callback endpoint: `GET /auth/google/callback`
+  - OAuth revoke endpoint: `DELETE /auth/google/revoke`
+  - Token encryption/decryption helpers (Fernet AES-128)
+  - Token retrieval API: `GET /api/tokens/google/{email}`
+  - Token status check: `GET /api/tokens/google/{email}/status`
+  - Automatic token refresh on expiration
+  - CSRF protection via session state validation
+  - Session middleware added (itsdangerous)
+- **UC-004:** Google Calendar connector complete
+  - List calendars: `GET /calendars/google?account_email={email}`
+  - List events: `GET /calendars/google/{id}/events?account_email={email}`
+  - Get single event: `GET /calendars/google/{id}/events/{event_id}?account_email={email}`
+  - Date range filtering (time_min, time_max parameters)
+  - All-day event support
+  - Attendee information included
 - README.md filled with project overview
 - BACKLOG.md populated with 14 work items
 - Port allocation: 61300 (dev), 61301 (accept), 61302 (prod)
 
 ### 🚧 In Progress
-- **UC-003:** Google OAuth connector (next)
+- **UC-005:** Google Tasks connector (next)
 
 ### ⏳ Planned
-- Google OAuth connector (UC-003)
-- Google Calendar + Tasks connectors (UC-004, UC-005)
 - Microsoft OAuth + connectors (UC-006, UC-007, UC-008)
 - Token retrieval API (UC-009)
 - Token management UI (UC-010)

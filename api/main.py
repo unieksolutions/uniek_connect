@@ -12,7 +12,7 @@ from starlette.middleware.sessions import SessionMiddleware
 from api.config import get_settings
 from api.database import init_db
 from api.oauth import google
-from api.routes import tokens
+from api.routes import tokens, calendars
 
 # Configure logging
 logging.basicConfig(
@@ -85,8 +85,8 @@ async def root():
             "docs": "/docs",
             "oauth": "/auth/{provider}/",
             "tokens": "/api/tokens/",
-            "calendars": "/calendars/{provider}/",
-            "tasks": "/tasks/{provider}/",
+            "calendars": "/calendars/{provider}/ (Google implemented)",
+            "tasks": "/tasks/{provider}/ (TODO)",
         }
     }
 
@@ -107,10 +107,10 @@ async def health():
 # Register routes
 app.include_router(google.router, prefix="/auth/google", tags=["oauth-google"])
 app.include_router(tokens.router, prefix="/api/tokens", tags=["tokens"])
+app.include_router(calendars.router, prefix="/calendars", tags=["calendars"])
 
 # TODO: Add more route modules
-# from api.routes import calendars, tasks, admin
-# app.include_router(calendars.router, prefix="/calendars", tags=["calendars"])
+# from api.routes import tasks, admin
 # app.include_router(tasks.router, prefix="/tasks", tags=["tasks"])
 # app.include_router(admin.router, prefix="/api/admin", tags=["admin"])
 

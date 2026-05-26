@@ -36,21 +36,21 @@ Sync this file with tickets API regularly to keep work visible in both places.
 - [x] Create health endpoint
 - [x] Test skeleton on port 61300
 
-#### UC-003: Google OAuth Connector
-- [ ] Register OAuth app in Google Cloud Console
-- [ ] Configure OAuth scopes (Calendar, Tasks read/write)
-- [ ] Implement /auth/google/login endpoint
-- [ ] Implement /auth/google/callback endpoint
-- [ ] Implement token storage in database
-- [ ] Implement token refresh logic
-- [ ] Test with niek@uniek.solutions account
+#### UC-003: Google OAuth Connector ✅
+- [x] Register OAuth app in Google Cloud Console
+- [x] Configure OAuth scopes (Calendar, Tasks read/write)
+- [x] Implement /auth/google/login endpoint
+- [x] Implement /auth/google/callback endpoint
+- [x] Implement token storage in database
+- [x] Implement token refresh logic
+- [x] Test with niek@uniek.solutions account
 
-#### UC-004: Google Calendar Connector
-- [ ] Implement Google Calendar API client
-- [ ] Create /calendars/google endpoint (list calendars)
-- [ ] Create /calendars/google/{id}/events endpoint (get events)
-- [ ] Implement date range filtering
-- [ ] Test with real Google account
+#### UC-004: Google Calendar Connector ✅
+- [x] Implement Google Calendar API client
+- [x] Create /calendars/google endpoint (list calendars)
+- [x] Create /calendars/google/{id}/events endpoint (get events)
+- [x] Implement date range filtering
+- [x] Test with real Google account
 
 #### UC-005: Google Tasks Connector
 - [ ] Implement Google Tasks API client
@@ -132,3 +132,5 @@ Sync this file with tickets API regularly to keep work visible in both places.
 - [x] UC-000: Bootstrap project structure from /opt/bootstrap templates (2025-05-21)
 - [x] UC-001: Architecture & Design - OAuth flows, database schema, API specs, security model (2025-05-21)
 - [x] UC-002: FastAPI skeleton - config, database models, app setup, health endpoint (2025-05-22)
+- [x] UC-003: Google OAuth connector - login/callback/revoke, token encryption, auto-refresh (2025-05-22)
+- [x] UC-004: Google Calendar connector - list calendars/events, date filtering, attendees (2025-05-22)
