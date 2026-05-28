@@ -12,7 +12,8 @@ Central OAuth connector service for external APIs (calendars, tasks, email, mess
 **Purpose:** Centralized OAuth token management and API connectors for Google, Microsoft, Apple, Nextcloud
 **Repository:** https://github.com/unieksolutions/uniek_connect
 **Development:** `/opt/projects/uniek_connect` (source of truth)
-**Production:** `/opt/products/uniek_connect`
+**Integration:** This code will be copied to `/opt/projects/organaizer/oauth-connector` for local use
+**Production:** `/opt/products/uniek_connect` (future multi-tenant SaaS)
 
 ## ✅ Implemented (Phase 1)
 
@@ -83,6 +84,18 @@ Central OAuth connector service for external APIs (calendars, tasks, email, mess
 - `GET /calendars/microsoft/{calendar_id}/events/{event_id}?account_email={email}` - Get event
 
 **Interactive API Docs:** http://localhost:61300/docs
+
+## Deployment Options
+
+### Option A: Standalone (Current)
+Run as independent service for development/testing:
+
+### Option B: Integrated in Organaizer (Recommended)
+Copy to Organaizer project as subcomponent:
+```bash
+cp -r /opt/projects/uniek_connect /opt/projects/organaizer/oauth-connector
+```
+See `/opt/projects/organaizer/docs/OAUTH_CONNECTOR_SETUP.md` for full integration guide.
 
 ## Quick Start
 
